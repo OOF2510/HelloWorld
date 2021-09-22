@@ -21,12 +21,8 @@ jobs:
           go build golang/helloWorld.go && mv helloWorld helloWorld-go-windows-x64.exe
           rustc rust/helloWorld.rs -o helloWorld-rust-windows-x64.exe
           dart compile exe dart/hello_world.dart -o hello_world-dart-windows-x64.exe
-        # gfortran fortran/helloworld.f90 -o helloworld-fortran-windows-x64
           ghc haskell/helloworld.hs -o helloworld-haskell-windows-x64.exe
           nim compile nim/helloWorld.nim && mv nim/helloWorld helloWorld-nim-windows-x64.exe
-        # pc pascal/HelloWorld.pas && mv pascal/HelloWorld HelloWorld-pascal-windows-x64
-        # valac vala/HelloWorld.vala -o HelloWorld-vala-windows-x64
-        # gcc objective-c/HelloWorld.m `gnustep-config --objc-flags` `gnustep-config --base-libs` -o HelloWorld-objective_c-windows-x64
           swiftc swift/helloWorld.swift -o helloWorld-swift-windows-x64.exe
        
       - name: Upload binaries
