@@ -20,7 +20,7 @@ jobs:
           g++ -c c++/HelloWorld.cpp && g++ -o HelloWorld-cpp-x64 HelloWorld.o
           gcc c/HelloWorld.c -o HelloWorld-c-x64
           go build golang/helloWorld.go && mv helloWorld helloWorld-go-x64
-          luac53 lua/helloWorld.lua -o helloWorld-lua-x64
+          luac lua/helloWorld.lua -o helloWorld-lua-x64
           nim compile nim/helloWorld.nim -o helloWorld-nim-x64
           rustc rust/helloWorld.rs -o helloWorld-rust-x64
           nasm -f elf64 -o helloworld.o x86_64\ assembly/helloworld.S && ld -o helloworld-assembly-linux-x64 helloworld.o
