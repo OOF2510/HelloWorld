@@ -17,7 +17,11 @@ jobs:
           sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
           sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
           sudo apt-get update
-          sudo apt-get install dart gfortran
+          sudo apt-get install -y dart gfortran ghc fp-compiler valac libgirepository1.0-dev libglib2.0-doc gobjc gnustep-devel
+          sudo apt-get install -y binutils git gnupg2 libc6-dev libcurl4 libedit2 libgcc-9-dev libpython2.7 libsqlite3-0 libstdc++-9-dev libxml2 libz3-dev pkg-config tzdata uuid-dev zlib1g-dev
+          wget https://swift.org/builds/swift-5.3.3-release/ubuntu2004/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-ubuntu20.04.tar.gz
+          tar -xvzf swift-5.3.3-RELEASE-ubuntu20.04.tar.gz -C ~
+          export PATH=~/swift-5.3.3-RELEASE-ubuntu20.04/usr/bin:$PATH
           export PATH="$PATH:/usr/lib/dart/bin"
         
       - name: Build
@@ -29,7 +33,13 @@ jobs:
           nasm -f elf64 -o helloworld.o x86_64\ assembly/helloworld-linux.S && ld -o helloworld-assembly-linux-x64 helloworld.o
           dart compile exe dart/hello_world.dart -o hello_world-dart-linux-x64
           gfortran fortran/helloworld.f90 -o helloworld-fortran-linux-x64
-          rm *.o
+          ghc haskell/helloworld.hs -o helloworld-haskell-linux-x64
+          nim compile nim/helloWorld.nim && mv nim/helloWorld helloWorld-nim-linux-x64
+          pc pascal/HelloWorld.pas && mv pascal/HelloWorld HelloWorld-pascal-linux-x64
+          valac vala/HelloWorld.vala -o HelloWorld-vala-linux-x64
+          gcc objective-c/HelloWorld.m `gnustep-config --objc-flags` `gnustep-config --base-libs` -o HelloWorld-objective_c-linux-x64
+          swiftc swift/helloWorld.swift -o helloWorld-swift-linux-x64
+          rm **/*.o **/*.hi
        
       - name: Upload binaries
         uses: actions/upload-artifact@v2
