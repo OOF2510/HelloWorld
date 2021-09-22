@@ -13,16 +13,22 @@ jobs:
       - name: Install build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential clang gcc g++ nasm golang lua5.3 nim rustc
+          sudo apt-get install -y build-essential clang gcc g++ nasm golang nim rustc git xz-utils zip apt-transport-https
+          sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+          sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+          sudo apt-get update
+          sudo apt-get install dart gfortran
+          export PATH="$PATH:/usr/lib/dart/bin"
         
       - name: Build
         run: |
-          g++ -c c++/HelloWorld.cpp && g++ -o HelloWorld-cpp-x64 HelloWorld.o
-          gcc c/HelloWorld.c -o HelloWorld-c-x64
-          go build golang/helloWorld.go && mv helloWorld helloWorld-go-x64
-          luac lua/helloWorld.lua && mv luac.out helloWorld-lua-x64
-          rustc rust/helloWorld.rs -o helloWorld-rust-x64
+          g++ -c c++/HelloWorld.cpp && g++ -o HelloWorld-cpp-linux-x64 HelloWorld.o
+          gcc c/HelloWorld.c -o HelloWorld-c-linux-x64
+          go build golang/helloWorld.go && mv helloWorld helloWorld-go-linux-x64
+          rustc rust/helloWorld.rs -o helloWorld-rust-linux-x64
           nasm -f elf64 -o helloworld.o x86_64\ assembly/helloworld-linux.S && ld -o helloworld-assembly-linux-x64 helloworld.o
+          dart compile exe dart/hello_world.dart -o hello_world-dart-linux-x64
+          gfortran fortran/helloworld.f90 -o helloworld-fortran-linux-x64
           rm *.o
        
       - name: Upload binaries
