@@ -13,7 +13,7 @@ jobs:
       - name: Install build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential clang gcc g++ nasm golang groovy scala lua5.3 nim rust
+          sudo apt-get install -y build-essential clang gcc g++ nasm golang groovy scala lua5.3 nim rustc
         
       - name: Build
         run: |
