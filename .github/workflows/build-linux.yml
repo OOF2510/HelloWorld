@@ -13,7 +13,7 @@ jobs:
       - name: Install build deps
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential clang gcc g++ nasm golang groovy scala lua nim rust
+          sudo apt-get install -y build-essential clang gcc g++ nasm golang groovy scala lua5.3 nim rust
         
       - name: Build
         run: |
@@ -22,7 +22,7 @@ jobs:
           go build golang/helloWorld.go && mv helloWorld helloWorld-go-x64
           groovyc groovy/HelloWorld.groovy && mv HelloWorld.class HelloWorld-groovy.class
           javac java/HelloWorld.java && mv HelloWorld.class HelloWorld-java.class
-          luac lua/helloWorld.lua -o helloWorld-lua-x64
+          luac53 lua/helloWorld.lua -o helloWorld-lua-x64
           nim compile nim/helloWorld.nim -o helloWorld-nim-x64
           rustc rust/helloWorld.rs -o helloWorld-rust-x64
           scalac scala/HelloWorld.scala && mv HelloWorld.class HelloWorld-scala.class
