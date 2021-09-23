@@ -13,7 +13,7 @@ jobs:
       - name: Install build deps
         run: |
           brew tap dart-lang/dart
-          brew install gcc go rust dart ghc nim 
+          brew install gcc rust dart ghc nim 
         
       - name: Build
         run: |
