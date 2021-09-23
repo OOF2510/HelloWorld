@@ -30,7 +30,7 @@ jobs:
           gcc c/HelloWorld.c -o HelloWorld-c-linux-x64
           go build golang/helloWorld.go && mv helloWorld helloWorld-go-linux-x64
           rustc rust/helloWorld.rs -o helloWorld-rust-linux-x64
-          nasm -f elf64 -o helloworld.o x86_64\ assembly/helloworld-linux.S && ld -o helloworld-assembly-linux-x64 helloworld.o
+          nasm -f elf64 -o helloworld.o assembly/helloworld-linux-x64.S && ld -o helloworld-assembly-linux-x64 helloworld.o
           dart compile exe dart/hello_world.dart -o hello_world-dart-linux-x64
           gfortran fortran/helloworld.f90 -o helloworld-fortran-linux-x64
           ghc haskell/helloworld.hs -o helloworld-haskell-linux-x64
