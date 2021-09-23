@@ -1,0 +1,38 @@
+name: Build (MacOS)
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - name: Install build deps
+        run: |
+          brew tap dart-lang/dart
+          brew install gcc go rust dart ghc nim 
+        
+      - name: Build
+        run: |
+          g++ -c c++/HelloWorld.cpp && g++ -o HelloWorld-cpp-macOS-x64 HelloWorld.o
+          gcc c/HelloWorld.c -o HelloWorld-c-macOS-x64
+          go build golang/helloWorld.go && mv helloWorld helloWorld-go-macOS-x64
+          rustc rust/helloWorld.rs -o helloWorld-rust-macOS-x64
+          dart compile exe dart/hello_world.dart -o hello_world-dart-macOS-x64
+          gfortran fortran/helloworld.f90 -o helloworld-fortran-macOS-x64
+          ghc haskell/helloworld.hs -o helloworld-haskell-macOS-x64
+          nim compile nim/helloWorld.nim && mv nim/helloWorld helloWorld-nim-macOS-x64
+          gcc objective-c/HelloWorld.m `gnustep-config --objc-flags` `gnustep-config --base-libs` -o HelloWorld-objective_c-macOS-x64
+          swiftc swift/helloWorld.swift -o helloWorld-swift-macOS-x64
+          rm **/*.o **/*.hi *.o *.d
+       
+      - name: Upload binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: Built
+          path: |
+            hello*
+            Hello*
