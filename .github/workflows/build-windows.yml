@@ -21,7 +21,6 @@ jobs:
           gcc c/HelloWorld.c -o HelloWorld-c-windows-x64.exe
           go build golang/helloWorld.go && mv helloWorld.exe helloWorld-go-windows-x64.exe
           rustc rust/helloWorld.rs -o helloWorld-rust-windows-x64.exe
-          dart compile exe dart/hello_world.dart -o hello_world-dart-windows-x64.exe
           ghc haskell/helloworld.hs -o helloworld-haskell-windows-x64.exe
           nim compile nim/helloWorld.nim && mv nim/helloWorld.exe helloWorld-nim-windows-x64.exe
           swiftc swift/helloWorld.swift -o helloWorld-swift-windows-x64.exe
