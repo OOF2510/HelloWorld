@@ -5,6 +5,10 @@
 
 **/*.o
 **/*.out
+**/*.hi
+*.o
+*.hi
+*.out
 
 .vscode/
 
