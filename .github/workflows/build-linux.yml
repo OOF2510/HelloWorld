@@ -39,7 +39,7 @@ jobs:
           valac vala/HelloWorld.vala -o HelloWorld-vala-linux-x64
           gcc objective-c/HelloWorld.m `gnustep-config --objc-flags` `gnustep-config --base-libs` -o HelloWorld-objective_c-linux-x64
           swiftc swift/helloWorld.swift -o helloWorld-swift-linux-x64
-          rm **/*.o **/*.hi *.o
+          rm **/*.o **/*.hi *.o *.d
        
       - name: Upload binaries
         uses: actions/upload-artifact@v2
