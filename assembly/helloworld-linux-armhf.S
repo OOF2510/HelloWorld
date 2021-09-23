@@ -8,7 +8,6 @@ len = . - msg
 
 .globl _start
 _start:
-
     mov     %r0, $1
     ldr     %r1, =msg
     ldr     %r2, =len
