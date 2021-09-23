@@ -26,7 +26,7 @@ jobs:
           ghc haskell/helloworld.hs -o helloworld-haskell-macOS-x64
           nim compile nim/helloWorld.nim && mv nim/helloWorld helloWorld-nim-macOS-x64
           swiftc swift/helloWorld.swift -o helloWorld-swift-macOS-x64
-          rm **/*.o **/*.hi *.o *.d
+          rm **/*.o **/*.hi *.o
        
       - name: Upload binaries
         uses: actions/upload-artifact@v2
