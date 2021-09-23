@@ -12,7 +12,7 @@ jobs:
       
       - name: Install build deps
         run: |
-          choco install mingw golang rust dart-sdk haskell-dev nim swiftforwindows -y
+          choco install mingw golang rust haskell-dev nim swiftforwindows -y
           refreshenv
         
       - name: Build
