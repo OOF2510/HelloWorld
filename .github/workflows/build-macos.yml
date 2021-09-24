@@ -13,7 +13,7 @@ jobs:
       - name: Install build deps
         run: |
           brew tap dart-lang/dart
-          brew install rust dart ghc nim 
+          brew install rust dart ghc nim nasm 
         
       - name: Build
         run: |
@@ -27,6 +27,7 @@ jobs:
           nim compile nim/helloWorld.nim && mv nim/helloWorld helloWorld-nim-macOS-x64
           clang -framework Foundation objective-c/HelloWorld.m -o HelloWorld-objective_c-macOS-x64
           swiftc swift/helloWorld.swift -o helloWorld-swift-macOS-x64
+          nasm -f macho64 -o helloworld.o assembly/helloworld-macos-x64.S && ld -macosx_version_min 10.7.0 -lSystem -o helloworld-macOS-x64 helloworld.o
           rm **/*.o **/*.hi *.o
 
       - name: Upload binaries
