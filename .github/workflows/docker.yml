@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Build Docker Image
-        run: docker build -t hellobuild .
+        run: docker build --no-cache -t hellobuild .
       
       - name: Get size of Docker Image
         run: docker system df -v
