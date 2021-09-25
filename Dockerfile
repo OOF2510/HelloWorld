@@ -6,7 +6,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone\
 && apt-get install -y build-essential clang gcc g++ nasm golang nim rustc git xz-utils zip apt-transport-https wget curl \
 && sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
 && sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' \
-&& curl -s 'https://gist.githubusercontent.com/OOF2510/80a91db0187cb939e90ff321da7ea318/raw/93913cc809711854a96e3db241b01a4125d100ad/install.sh' | bash \
+&& curl -s 'https://gist.githubusercontent.com/OOF2510/80a91db0187cb939e90ff321da7ea318/raw/4284cf21d4c4af14f49790bf6b83a105658bd102/install.sh' | bash \
 && apt-get update \
 && apt-get install -y dart swiftlang gfortran ghc fp-compiler valac libgirepository1.0-dev libglib2.0-doc gobjc gnustep-devel git \
 && ln -s /usr/lib/dart/bin/* /usr/local/bin/ \
