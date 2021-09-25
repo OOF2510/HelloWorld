@@ -6,8 +6,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone\
 && apt-get install -y build-essential clang gcc g++ nasm golang nim rustc git xz-utils zip apt-transport-https wget curl \
 && sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' \
 && sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' \
+&& curl -s 'https://gist.githubusercontent.com/OOF2510/80a91db0187cb939e90ff321da7ea318/raw/4284cf21d4c4af14f49790bf6b83a105658bd102/install.sh' | bash \
 && apt-get update \
-&& apt-get install -y dart gfortran ghc fp-compiler valac libgirepository1.0-dev libglib2.0-doc gobjc gnustep-devel git \
+&& apt-get install -y swiftlang dart gfortran ghc fp-compiler valac libgirepository1.0-dev libglib2.0-doc gobjc gnustep-devel git \
 && ln -s /usr/lib/dart/bin/* /usr/local/bin/ \
 && mkdir -p /usr/src
 
@@ -29,7 +30,7 @@ RUN wget 'https://gist.githubusercontent.com/OOF2510/fa4f1d02fa96ec9c70db4299095
 
 WORKDIR /usr/script
 
-RUN wget 'https://gist.githubusercontent.com/OOF2510/dccdb0f47e1fe2022e29601931da70a5/raw/a38f291fc686453f8233876df9b1fee3c76a75ae/compile.sh'
+RUN wget 'https://gist.githubusercontent.com/OOF2510/dccdb0f47e1fe2022e29601931da70a5/raw/14ee5e91789a0005d5e24a913c3a7f35b25d5635/compile.sh'
 EXPOSE 8080
 
 CMD ["bash", "compile.sh"]
